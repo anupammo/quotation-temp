@@ -1,0 +1,878 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Performance Marketing Quotation | RP Digital Lab</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background: linear-gradient(135deg, #f0f9ff 0%, #e6f7ff 100%);
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+            min-height: 100vh;
+        }
+        
+        .container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+        
+        .quotation-card {
+            background: white;
+            border-radius: 15px;
+            box-shadow: 0 15px 40px rgba(4, 112, 176, 0.15);
+            overflow: hidden;
+            margin: 30px auto;
+            position: relative;
+            border: 1px solid rgba(5, 76, 176, 0.1);
+        }
+        
+        .watermark {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            font-size: 180px;
+            font-weight: 900;
+            color: rgba(4, 112, 176, 0.03);
+            z-index: 0;
+            pointer-events: none;
+            opacity: 0.7;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, #054cb0 0%, #0183b4 100%);
+            color: white;
+            padding: 50px 40px 40px;
+            text-align: center;
+            position: relative;
+            overflow: hidden;
+            clip-path: polygon(0 0, 100% 0, 100% 90%, 0 100%);
+        }
+        
+        .header::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.15) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .brand-logo {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            margin-bottom: 30px;
+        }
+        
+        .logo-abbr {
+            display: flex;
+            gap: 15px;
+            margin-bottom: 10px;
+        }
+        
+        .logo-letter {
+            font-size: 50px;
+            font-weight: 800;
+            background: linear-gradient(135deg, #04b0e2 0%, #05b5cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .logo-text {
+            font-size: 32px;
+            font-weight: 700;
+            letter-spacing: 3px;
+            text-transform: uppercase;
+            color: white;
+            margin-top: 10px;
+        }
+        
+        .title {
+            font-size: 38px;
+            font-weight: 700;
+            margin: 15px 0;
+            letter-spacing: 1px;
+            color: #04b0e2;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+        }
+        
+        .subtitle {
+            font-size: 18px;
+            opacity: 0.9;
+            max-width: 700px;
+            margin: 0 auto;
+        }
+        
+        .divider {
+            height: 4px;
+            background: linear-gradient(90deg, transparent 0%, rgba(4, 176, 226, 0.6) 50%, transparent 100%);
+            margin: 25px auto;
+            width: 60%;
+            border-radius: 2px;
+        }
+        
+        .client-info {
+            display: flex;
+            justify-content: space-between;
+            flex-wrap: wrap;
+            padding: 30px 40px;
+            background: #f8f9fa;
+            border-bottom: 1px solid #e9ecef;
+            background: linear-gradient(to right, #f0f9ff, #e6f7ff);
+        }
+        
+        .info-block {
+            flex: 1;
+            min-width: 250px;
+            padding: 15px;
+            text-align: center;
+        }
+        
+        .info-label {
+            font-size: 14px;
+            color: #0183b4;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+            margin-bottom: 5px;
+            font-weight: 600;
+        }
+        
+        .info-value {
+            font-size: 18px;
+            font-weight: 600;
+            color: #054cb0;
+        }
+        
+        .highlight-box {
+            background: linear-gradient(135deg, #04b0e2 0%, #05b5cc 100%);
+            color: white;
+            padding: 25px 40px;
+            text-align: center;
+            font-size: 24px;
+            font-weight: 700;
+            text-shadow: 0 2px 4px rgba(0,0,0,0.1);
+            position: relative;
+            overflow: hidden;
+        }
+        
+        .highlight-box::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.2) 0%, transparent 70%);
+            transform: rotate(30deg);
+        }
+        
+        .services-section {
+            padding: 50px 40px 40px;
+            background: white;
+        }
+        
+        .section-title {
+            font-size: 32px;
+            color: #054cb0;
+            margin-bottom: 40px;
+            position: relative;
+            display: inline-block;
+            font-weight: 700;
+            text-align: center;
+            width: 100%;
+        }
+        
+        .section-title::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 60px;
+            height: 4px;
+            background: #04b0e2;
+            border-radius: 2px;
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 30px;
+            margin-top: 40px;
+        }
+        
+        .service-card {
+            background: #f0f9ff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(4, 112, 176, 0.1);
+            transition: all 0.3s ease;
+            border: 1px solid rgba(4, 176, 226, 0.1);
+        }
+        
+        .service-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 15px 30px rgba(4, 112, 176, 0.2);
+        }
+        
+        .service-header {
+            background: linear-gradient(135deg, #0183b4 0%, #05b5cc 100%);
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .service-icon {
+            font-size: 40px;
+            margin-bottom: 15px;
+        }
+        
+        .service-title {
+            font-size: 22px;
+            font-weight: 700;
+        }
+        
+        .service-content {
+            padding: 25px;
+        }
+        
+        .service-list {
+            list-style-type: none;
+            margin-top: 15px;
+        }
+        
+        .service-list li {
+            padding: 10px 0;
+            border-bottom: 1px solid rgba(4, 176, 226, 0.1);
+            display: flex;
+            align-items: flex-start;
+        }
+        
+        .service-list li:last-child {
+            border-bottom: none;
+        }
+        
+        .service-list li::before {
+            content: '✓';
+            color: #04b0e2;
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .timeline-section {
+            padding: 50px 40px;
+            background: linear-gradient(to bottom, #f8fcff, #e6f7ff);
+        }
+        
+        .timeline {
+            position: relative;
+            margin: 40px 0;
+        }
+        
+        .timeline::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 4px;
+            background: linear-gradient(to bottom, #04b0e2, #05b5cc);
+            border-radius: 2px;
+        }
+        
+        .timeline-row {
+            display: flex;
+            margin-bottom: 30px;
+        }
+        
+        .timeline-row:nth-child(even) {
+            flex-direction: row-reverse;
+        }
+        
+        .timeline-item {
+            width: calc(50% - 30px);
+            position: relative;
+            padding: 25px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(4, 112, 176, 0.1);
+        }
+        
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            top: 30px;
+            width: 20px;
+            height: 20px;
+            border-radius: 50%;
+            background: linear-gradient(135deg, #04b0e2 0%, #05b5cc 100%);
+            z-index: 1;
+        }
+        
+        .timeline-row:nth-child(odd) .timeline-item::before {
+            right: -40px;
+        }
+        
+        .timeline-row:nth-child(even) .timeline-item::before {
+            left: -40px;
+        }
+        
+        .timeline-month {
+            font-size: 18px;
+            font-weight: 700;
+            color: #0183b4;
+            margin-bottom: 10px;
+        }
+        
+        .timeline-content {
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .why-choose {
+            padding: 50px 40px;
+            background: white;
+        }
+        
+        .benefits {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 25px;
+            margin-top: 40px;
+        }
+        
+        .benefit-card {
+            background: #f0f9ff;
+            padding: 30px 25px;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(4, 112, 176, 0.1);
+            text-align: center;
+            transition: all 0.3s ease;
+            border: 1px solid rgba(4, 176, 226, 0.1);
+        }
+        
+        .benefit-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(4, 112, 176, 0.15);
+        }
+        
+        .benefit-icon {
+            font-size: 36px;
+            background: linear-gradient(135deg, #04b0e2 0%, #05b5cc 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            margin-bottom: 15px;
+        }
+        
+        .benefit-title {
+            font-size: 20px;
+            font-weight: 700;
+            margin-bottom: 10px;
+            color: #0183b4;
+        }
+        
+        .contact-section {
+            padding: 50px 40px;
+            background: linear-gradient(135deg, #054cb0 0%, #0183b4 100%);
+            color: white;
+            clip-path: polygon(0 10%, 100% 0, 100% 100%, 0 100%);
+        }
+        
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 30px;
+            margin-top: 30px;
+        }
+        
+        .contact-card {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 25px;
+            border-radius: 10px;
+            display: flex;
+            align-items: center;
+            gap: 15px;
+            transition: all 0.3s ease;
+            backdrop-filter: blur(5px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+        
+        .contact-card:hover {
+            background: rgba(255, 255, 255, 0.2);
+            transform: translateY(-3px);
+        }
+        
+        .contact-icon {
+            font-size: 24px;
+            width: 50px;
+            height: 50px;
+            background: rgba(255, 255, 255, 0.15);
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #04b0e2;
+        }
+        
+        .contact-info h3 {
+            font-size: 18px;
+            margin-bottom: 5px;
+            color: #04b0e2;
+        }
+        
+        .contact-info p {
+            opacity: 0.9;
+        }
+        
+        .footer {
+            text-align: center;
+            padding: 30px 25px;
+            background: #054cb0;
+            color: white;
+            font-size: 16px;
+        }
+        
+        .action-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 15px;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+        
+        .btn {
+            padding: 12px 25px;
+            border-radius: 50px;
+            font-weight: 600;
+            text-decoration: none;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+            transition: all 0.3s ease;
+        }
+        
+        .btn-primary {
+            background: #04b0e2;
+            color: white;
+            border: 2px solid #04b0e2;
+        }
+        
+        .btn-outline {
+            background: transparent;
+            color: white;
+            border: 2px solid white;
+        }
+        
+        .btn:hover {
+            transform: translateY(-3px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+        
+        @media (max-width: 768px) {
+            .header {
+                padding: 40px 20px 30px;
+            }
+            
+            .title {
+                font-size: 28px;
+            }
+            
+            .client-info {
+                padding: 20px;
+            }
+            
+            .services-section, .timeline-section, .why-choose, .contact-section {
+                padding: 40px 20px;
+            }
+            
+            .watermark {
+                font-size: 100px;
+            }
+            
+            .logo-letter {
+                font-size: 40px;
+            }
+            
+            .logo-text {
+                font-size: 24px;
+            }
+            
+            .highlight-box {
+                font-size: 20px;
+                padding: 20px;
+            }
+            
+            .section-title {
+                font-size: 26px;
+            }
+            
+            .timeline::before {
+                left: 20px;
+            }
+            
+            .timeline-row {
+                flex-direction: column;
+                margin-bottom: 50px;
+            }
+            
+            .timeline-row:nth-child(even) {
+                flex-direction: column;
+            }
+            
+            .timeline-item {
+                width: 100%;
+                margin-top: 40px;
+            }
+            
+            .timeline-row:nth-child(odd) .timeline-item::before,
+            .timeline-row:nth-child(even) .timeline-item::before {
+                left: 50%;
+                top: -30px;
+                transform: translateX(-50%);
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quotation-card">
+            <div class="watermark">PERFORMANCE</div>
+            
+            <!-- Header Section -->
+            <div class="header">
+                <div class="brand-logo">
+                    <div class="logo-abbr">
+                        <div class="logo-letter">R</div>
+                        <div class="logo-letter">P</div>
+                    </div>
+                    <div class="logo-text">DIGITALLAB</div>
+                </div>
+                <h1 class="title">Performance Marketing Quotation</h1>
+                <p class="subtitle">Comprehensive digital strategy including Social Media, Google My Business, and Brand Strategy</p>
+                <div class="divider"></div>
+                <p>Prepared exclusively for Swraj Interiors</p>
+            </div>
+            
+            <!-- Client Information -->
+            <div class="client-info">
+                <div class="info-block">
+                    <div class="info-label">Prepared By</div>
+                    <div class="info-value">RP Digital Lab</div>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Date</div>
+                    <div class="info-value">12 July 2025</div>
+                </div>
+                <div class="info-block">
+                    <div class="info-label">Duration</div>
+                    <div class="info-value">6 Months</div>
+                </div>
+            </div>
+            
+            <!-- Investment Highlight -->
+            <div class="highlight-box">
+                <div>Total Investment: ₹90,000 <span style="font-size: 18px; opacity: 0.9;">(₹15,000/month | Taxes extra as applicable)</span></div>
+            </div>
+            
+            <!-- Services Section -->
+            <div class="services-section">
+                <h2 class="section-title">Comprehensive Services</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Our performance marketing package includes all aspects of digital marketing to maximize your brand's online presence and ROI</p>
+                
+                <div class="services-grid">
+                    <!-- Social Media Card -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-hashtag"></i>
+                            </div>
+                            <h3 class="service-title">Social Media Management</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Complete optimization and management of your social presence</p>
+                            <ul class="service-list">
+                                <li>Platform strategy & setup (Facebook, Instagram, LinkedIn)</li>
+                                <li>Content calendar development</li>
+                                <li>Community management & engagement</li>
+                                <li>Performance analytics & reporting</li>
+                                <li>Influencer collaboration strategy</li>
+                                <li>Social advertising campaigns</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Google My Business Card -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-store"></i>
+                            </div>
+                            <h3 class="service-title">Google My Business</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Maximize your local search presence and visibility</p>
+                            <ul class="service-list">
+                                <li>Complete GMB setup & optimization</li>
+                                <li>Review management strategy</li>
+                                <li>Local SEO implementation</li>
+                                <li>Posts & updates scheduling</li>
+                                <li>Google Q&A management</li>
+                                <li>Performance tracking & insights</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Brand Strategy Card -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-chess-king"></i>
+                            </div>
+                            <h3 class="service-title">Brand Strategy</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Develop a cohesive brand identity and strategy</p>
+                            <ul class="service-list">
+                                <li>Brand positioning & messaging</li>
+                                <li>Competitor analysis & differentiation</li>
+                                <li>Target audience profiling</li>
+                                <li>Visual identity guidelines</li>
+                                <li>Brand voice development</li>
+                                <li>Customer journey mapping</li>
+                            </ul>
+                        </div>
+                    </div>
+                    
+                    <!-- Marketing Strategy Card -->
+                    <div class="service-card">
+                        <div class="service-header">
+                            <div class="service-icon">
+                                <i class="fas fa-bullseye"></i>
+                            </div>
+                            <h3 class="service-title">Marketing Strategy</h3>
+                        </div>
+                        <div class="service-content">
+                            <p>Integrated approach combining organic and paid tactics</p>
+                            <ul class="service-list">
+                                <li>Organic content strategy</li>
+                                <li>Paid advertising campaigns</li>
+                                <li>Conversion rate optimization</li>
+                                <li>Marketing funnel development</li>
+                                <li>ROI tracking & analytics</li>
+                                <li>Multi-channel campaign management</li>
+                            </ul>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Timeline Section -->
+            <div class="timeline-section">
+                <h2 class="section-title">Implementation Timeline</h2>
+                <p style="text-align: center; max-width: 800px; margin: 0 auto 30px;">Our 6-month roadmap for your performance marketing success</p>
+                
+                <div class="timeline">
+                    <!-- Month 1 -->
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-month">Month 1: Foundation & Strategy</div>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Comprehensive brand audit</li>
+                                    <li>Market research & competitor analysis</li>
+                                    <li>Social media account setup</li>
+                                    <li>GMB profile optimization</li>
+                                    <li>Initial strategy development</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Month 2 -->
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-month">Month 2: Content & Launch</div>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Content calendar development</li>
+                                    <li>Brand assets creation</li>
+                                    <li>Social media campaign launch</li>
+                                    <li>Initial paid advertising setup</li>
+                                    <li>GMB post scheduling</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Month 3 -->
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-month">Month 3: Optimization</div>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Performance analysis & reporting</li>
+                                    <li>Campaign optimization</li>
+                                    <li>Review management implementation</li>
+                                    <li>Content refinement</li>
+                                    <li>Audience targeting adjustments</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Month 4 -->
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-month">Month 4: Expansion</div>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>New platform exploration</li>
+                                    <li>Influencer collaboration</li>
+                                    <li>Enhanced GMB features</li>
+                                    <li>Advanced analytics implementation</li>
+                                    <li>Retargeting campaigns</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Month 5 -->
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-month">Month 5: Scaling</div>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>High-performing campaign scaling</li>
+                                    <li>Brand awareness initiatives</li>
+                                    <li>User-generated content campaigns</li>
+                                    <li>Advanced conversion optimization</li>
+                                    <li>Marketing automation setup</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <!-- Month 6 -->
+                    <div class="timeline-row">
+                        <div class="timeline-item">
+                            <div class="timeline-month">Month 6: Analysis & Roadmap</div>
+                            <div class="timeline-content">
+                                <ul>
+                                    <li>Comprehensive performance review</li>
+                                    <li>ROI analysis report</li>
+                                    <li>Competitor benchmarking</li>
+                                    <li>Long-term strategy roadmap</li>
+                                    <li>Optimization recommendations</li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Why Choose Section -->
+            <div class="why-choose">
+                <h2 class="section-title">Why Choose Our Performance Marketing?</h2>
+                
+                <div class="benefits">
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-chart-line"></i></div>
+                        <h3 class="benefit-title">Data-Driven Approach</h3>
+                        <p>We base all decisions on analytics and performance metrics</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-sync-alt"></i></div>
+                        <h3 class="benefit-title">Integrated Strategy</h3>
+                        <p>Seamless coordination between all marketing channels</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-bullseye"></i></div>
+                        <h3 class="benefit-title">ROI Focused</h3>
+                        <p>Every activity is designed to maximize your return on investment</p>
+                    </div>
+                    
+                    <div class="benefit-card">
+                        <div class="benefit-icon"><i class="fas fa-tachometer-alt"></i></div>
+                        <h3 class="benefit-title">Agile Optimization</h3>
+                        <p>Continuous improvement based on real-time performance data</p>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Contact Section -->
+            <div class="contact-section">
+                <h2 class="section-title" style="color: #04b0e2;">Contact Us</h2>
+                <p style="text-align: center; max-width: 600px; margin: 0 auto;">Reach out to discuss this performance marketing proposal</p>
+                
+                <div class="contact-grid">
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-map-marker-alt"></i></div>
+                        <div class="contact-info">
+                            <h3>Location</h3>
+                            <p>Sector V, Bidhannagar, Kolkata-91, WB</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-phone-alt"></i></div>
+                        <div class="contact-info">
+                            <h3>Phone</h3>
+                            <p>+91 81453 27376</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-envelope"></i></div>
+                        <div class="contact-info">
+                            <h3>Email</h3>
+                            <p>rpdigitallab@gmail.com</p>
+                        </div>
+                    </div>
+                    
+                    <div class="contact-card">
+                        <div class="contact-icon"><i class="fas fa-clock"></i></div>
+                        <div class="contact-info">
+                            <h3>Business Hours</h3>
+                            <p>Monday–Friday: 10:00–19:00</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Footer -->
+            <div class="footer">
+                <p>Thank you for considering RP Digital Lab for your performance marketing needs</p>
+                <div class="action-buttons">
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-file-pdf"></i> Download as PDF
+                    </a>
+                    <a href="#" class="btn btn-primary">
+                        <i class="fas fa-calendar-check"></i> Schedule Consultation
+                    </a>
+                    <a href="#" class="btn btn-outline">
+                        <i class="fas fa-file-excel"></i> Excel Breakdown
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+</html>
