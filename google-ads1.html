@@ -53,17 +53,19 @@
         .profile-info h1 {
             font-size: 32px;
             margin-bottom: 5px;
+            text-align: center;
         }
         
         .profile-info .title {
             font-size: 18px;
             margin-bottom: 10px;
             opacity: 0.9;
+            text-align: center;
         }
         
         .contact-info {
             display: flex;
-            flex-direction: column;
+            flex-direction: row;
             gap: 8px;
             margin-top: 15px;
         }
@@ -75,12 +77,14 @@
         }
         
         .msme-badge {
-            background-color: rgba(255, 255, 255, 0.2);
-            padding: 5px 10px;
-            border-radius: 4px;
+            background-color: rgb(255 255 255);
+            color: var(--primary);
+            padding: 5px 15px;
+            border-radius: 20px;
             font-size: 14px;
-            margin-top: 10px;
-            display: inline-block;
+            font-weight: bold;
+            margin: 20px auto 0px;
+            width: fit-content;
         }
         
         /* Quotation Card Styles */
@@ -318,11 +322,13 @@
                     <div class="info-grid">
                         <div class="info-item">
                             <span class="info-label">Client</span>
-                            <span class="info-value">[Your Name / Business Name]</span>
+                            <!-- <span class="info-value">[Your Name / Business Name]</span> -->
+                            <span class="info-value">Smilepad Hygiene India Pvt Ltd</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Service</span>
-                            <span class="info-value">Google Ads Management</span>
+                            <!-- <span class="info-value">Google Ads Management</span> -->
+                            <span class="info-value">Google Ads Campaign</span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Target Region</span>
@@ -330,11 +336,13 @@
                         </div>
                         <div class="info-item">
                             <span class="info-label">Website Type</span>
-                            <span class="info-value">Single-page (Landing page / Portfolio / Product page)</span>
+                            <!-- <span class="info-value">Single-page (Landing page / Portfolio / Product page)</span> -->
+                            <span class="info-value">Single-page </span>
                         </div>
                         <div class="info-item">
                             <span class="info-label">Duration</span>
-                            <span class="info-value">30 Days</span>
+                            <!-- <span class="info-value">30 Days</span> -->
+                            <span class="info-value">1 Month</span>
                         </div>
                     </div>
                 </div>
@@ -435,10 +443,10 @@
                 <div class="total-cost">
                     Total: ₹36,000
                 </div>
-                <div class="action-buttons">
+                <!-- <div class="action-buttons">
                     <button class="btn btn-outline">Download PDF</button>
                     <button class="btn btn-primary">Approve Quotation</button>
-                </div>
+                </div> -->
             </div>
         </div>
     </div>
