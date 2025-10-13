@@ -1,0 +1,375 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Google Ads Campaign Quotation</title>
+    <style>
+        :root {
+            --primary: #4285F4;
+            --secondary: #34A853;
+            --accent: #FBBC05;
+            --dark: #333333;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            padding: 20px;
+        }
+        
+        .quotation-card {
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+        
+        .header {
+            background: linear-gradient(135deg, var(--primary), #5b9cf5);
+            color: white;
+            padding: 30px;
+            text-align: center;
+        }
+        
+        .header h1 {
+            font-size: 28px;
+            margin-bottom: 10px;
+        }
+        
+        .header p {
+            opacity: 0.9;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        .client-info {
+            background-color: var(--light);
+            padding: 20px;
+            border-radius: 8px;
+            margin-bottom: 30px;
+            border-left: 4px solid var(--primary);
+        }
+        
+        .client-info h2 {
+            color: var(--primary);
+            margin-bottom: 15px;
+        }
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+            gap: 15px;
+        }
+        
+        .info-item {
+            display: flex;
+            flex-direction: column;
+        }
+        
+        .info-label {
+            font-weight: 600;
+            color: var(--gray);
+            font-size: 14px;
+        }
+        
+        .info-value {
+            font-weight: 500;
+            margin-top: 5px;
+        }
+        
+        .section {
+            margin-bottom: 30px;
+        }
+        
+        .section-title {
+            display: flex;
+            align-items: center;
+            margin-bottom: 20px;
+            color: var(--primary);
+        }
+        
+        .section-title i {
+            margin-right: 10px;
+            font-size: 20px;
+        }
+        
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            margin-bottom: 10px;
+        }
+        
+        th {
+            background-color: var(--light);
+            text-align: left;
+            padding: 12px 15px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+        
+        td {
+            padding: 12px 15px;
+            border-bottom: 1px solid #eaeaea;
+        }
+        
+        .total-row {
+            background-color: var(--light);
+            font-weight: 600;
+            font-size: 18px;
+        }
+        
+        .highlight {
+            color: var(--primary);
+            font-weight: 600;
+        }
+        
+        .deliverables-list {
+            list-style-type: none;
+        }
+        
+        .deliverables-list li {
+            padding: 8px 0;
+            border-bottom: 1px solid #eaeaea;
+            display: flex;
+            align-items: center;
+        }
+        
+        .deliverables-list li:before {
+            content: "✓";
+            color: var(--secondary);
+            font-weight: bold;
+            margin-right: 10px;
+        }
+        
+        .footer {
+            background-color: var(--light);
+            padding: 20px 30px;
+            border-top: 1px solid #eaeaea;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .total-cost {
+            font-size: 24px;
+            font-weight: 700;
+            color: var(--primary);
+        }
+        
+        .action-buttons {
+            display: flex;
+            gap: 10px;
+        }
+        
+        .btn {
+            padding: 10px 20px;
+            border-radius: 5px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            border: none;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary);
+            color: white;
+        }
+        
+        .btn-outline {
+            background-color: transparent;
+            border: 1px solid var(--primary);
+            color: var(--primary);
+        }
+        
+        .btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+        }
+        
+        @media (max-width: 768px) {
+            .info-grid {
+                grid-template-columns: 1fr;
+            }
+            
+            .footer {
+                flex-direction: column;
+                gap: 20px;
+                text-align: center;
+            }
+            
+            .action-buttons {
+                width: 100%;
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="quotation-card">
+            <div class="header">
+                <h1>Google Ads Campaign Quotation</h1>
+                <p>Comprehensive digital advertising solution for your business growth</p>
+            </div>
+            
+            <div class="content">
+                <div class="client-info">
+                    <h2>Client Information</h2>
+                    <div class="info-grid">
+                        <div class="info-item">
+                            <span class="info-label">Client</span>
+                            <span class="info-value">[Your Name / Business Name]</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Service</span>
+                            <span class="info-value">Google Ads Management</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Target Region</span>
+                            <span class="info-value">India</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Website Type</span>
+                            <span class="info-value">Single-page (Landing page / Portfolio / Product page)</span>
+                        </div>
+                        <div class="info-item">
+                            <span class="info-label">Duration</span>
+                            <span class="info-value">30 Days</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">
+                        <span>📊</span> Budget Breakdown
+                    </h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Item</th>
+                                <th>Description</th>
+                                <th>Amount (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Ad Spend (CPC Model)</td>
+                                <td>Estimated ₹20–₹80 per click. Targeting 1,000–2,000 clicks/month.</td>
+                                <td>₹25,000</td>
+                            </tr>
+                            <tr>
+                                <td>Campaign Setup Fee</td>
+                                <td>Keyword research, audience targeting, ad copywriting, conversion tracking</td>
+                                <td>₹3,000</td>
+                            </tr>
+                            <tr>
+                                <td>Landing Page Optimization</td>
+                                <td>Speed, mobile responsiveness, CTA tuning (if needed)</td>
+                                <td>₹2,000</td>
+                            </tr>
+                            <tr>
+                                <td>Ad Management Fee</td>
+                                <td>Daily monitoring, bid adjustments, A/B testing, performance reporting</td>
+                                <td>₹5,000</td>
+                            </tr>
+                            <tr>
+                                <td>Reporting & Analytics</td>
+                                <td>Weekly performance reports, ROI tracking, keyword performance insights</td>
+                                <td>₹1,000</td>
+                            </tr>
+                            <tr class="total-row">
+                                <td colspan="2">Total Monthly Cost</td>
+                                <td class="highlight">₹36,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">
+                        <span>🎯</span> Deliverables
+                    </h2>
+                    <ul class="deliverables-list">
+                        <li>Google Search Ads + Display Ads (if applicable)</li>
+                        <li>Geo-targeting for Indian audience</li>
+                        <li>Conversion tracking setup (Google Tag Manager + Analytics)</li>
+                        <li>Weekly performance reports</li>
+                        <li>Keyword and audience refinement</li>
+                    </ul>
+                </div>
+                
+                <div class="section">
+                    <h2 class="section-title">
+                        <span>💡</span> Optional Add-ons
+                    </h2>
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>Add-on</th>
+                                <th>Description</th>
+                                <th>Cost (INR)</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>Remarketing Setup</td>
+                                <td>Retarget visitors with custom ads</td>
+                                <td>₹2,000</td>
+                            </tr>
+                            <tr>
+                                <td>WhatsApp Lead Integration</td>
+                                <td>Connect leads directly to WhatsApp</td>
+                                <td>₹1,500</td>
+                            </tr>
+                            <tr>
+                                <td>Multilingual Ad Variants</td>
+                                <td>Hindi/Bengali ad copies for regional targeting</td>
+                                <td>₹1,000</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <div class="total-cost">
+                    Total: ₹36,000
+                </div>
+                <div class="action-buttons">
+                    <button class="btn btn-outline">Download PDF</button>
+                    <button class="btn btn-primary">Approve Quotation</button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Simple functionality for buttons
+        document.querySelector('.btn-primary').addEventListener('click', function() {
+            alert('Thank you for approving the quotation! We will contact you shortly.');
+        });
+        
+        document.querySelector('.btn-outline').addEventListener('click', function() {
+            alert('PDF download functionality would be implemented here.');
+        });
+    </script>
+</body>
+</html>
