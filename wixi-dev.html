@@ -1,0 +1,723 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Customizable Quotation Template</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <style>
+        :root {
+            --primary: #6441a5;
+            --primary-light: #7d5cc1;
+            --primary-dark: #4e3280;
+            --secondary: #ff6b6b;
+            --dark: #1a1a2e;
+            --light: #f8f9fa;
+            --gray: #6c757d;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+
+        body {
+            background-color: #f5f7fa;
+            color: var(--dark);
+            line-height: 1.6;
+        }
+
+        .container {
+            display: flex;
+            max-width: 1400px;
+            margin: 20px auto;
+            gap: 20px;
+            padding: 0 15px;
+        }
+
+        .editor-panel {
+            flex: 1;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
+            padding: 25px;
+            max-width: 400px;
+        }
+
+        .quotation-container {
+            flex: 2;
+            background: white;
+            border-radius: 12px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.08);
+            overflow: hidden;
+        }
+
+        .panel-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+        }
+
+        .form-group {
+            margin-bottom: 20px;
+        }
+
+        .form-group label {
+            display: block;
+            margin-bottom: 8px;
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .form-control {
+            width: 100%;
+            padding: 10px 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+
+        .form-control:focus {
+            border-color: var(--primary);
+            outline: none;
+            box-shadow: 0 0 0 3px rgba(100, 65, 165, 0.2);
+        }
+
+        .btn {
+            display: inline-block;
+            background: var(--primary);
+            color: white;
+            padding: 12px 25px;
+            border-radius: 30px;
+            text-decoration: none;
+            font-weight: 600;
+            border: none;
+            cursor: pointer;
+            transition: var(--transition);
+            width: 100%;
+            margin-top: 10px;
+        }
+
+        .btn:hover {
+            background: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(100, 65, 165, 0.3);
+        }
+
+        .btn-secondary {
+            background: var(--secondary);
+        }
+
+        .btn-secondary:hover {
+            background: #ff5252;
+            box-shadow: 0 5px 15px rgba(255, 107, 107, 0.3);
+        }
+
+        .header {
+            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            color: white;
+            padding: 40px;
+            text-align: center;
+        }
+
+        .header h1 {
+            font-size: 2.5rem;
+            margin-bottom: 10px;
+            font-weight: 700;
+        }
+
+        .header p {
+            font-size: 1.1rem;
+            opacity: 0.9;
+        }
+
+        .quotation-details {
+            display: flex;
+            justify-content: space-between;
+            padding: 20px 40px;
+            background-color: var(--light);
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .detail-item {
+            flex: 1;
+            text-align: center;
+        }
+
+        .detail-item h3 {
+            color: var(--primary);
+            font-size: 1rem;
+            margin-bottom: 5px;
+            text-transform: uppercase;
+            letter-spacing: 1px;
+        }
+
+        .detail-item p {
+            font-weight: 600;
+            color: var(--dark);
+        }
+
+        .content-section {
+            padding: 40px;
+        }
+
+        .section-title {
+            color: var(--primary);
+            font-size: 1.5rem;
+            margin-bottom: 20px;
+            padding-bottom: 10px;
+            border-bottom: 2px solid var(--primary-light);
+            display: flex;
+            align-items: center;
+        }
+
+        .section-title i {
+            margin-right: 10px;
+            font-size: 1.3rem;
+        }
+
+        .overview-list {
+            list-style-type: none;
+            margin-left: 20px;
+        }
+
+        .overview-list li {
+            margin-bottom: 12px;
+            position: relative;
+            padding-left: 25px;
+        }
+
+        .overview-list li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--secondary);
+            font-weight: bold;
+        }
+
+        .timeline {
+            position: relative;
+            margin: 30px 0;
+        }
+
+        .timeline:before {
+            content: '';
+            position: absolute;
+            left: 20px;
+            top: 0;
+            bottom: 0;
+            width: 3px;
+            background: var(--primary-light);
+        }
+
+        .timeline-item {
+            margin-bottom: 30px;
+            padding-left: 50px;
+            position: relative;
+        }
+
+        .timeline-item:before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 5px;
+            width: 16px;
+            height: 16px;
+            border-radius: 50%;
+            background: var(--primary);
+            border: 3px solid white;
+            box-shadow: 0 0 0 3px var(--primary-light);
+        }
+
+        .timeline-title {
+            font-weight: 600;
+            color: var(--primary-dark);
+            margin-bottom: 5px;
+        }
+
+        .timeline-duration {
+            color: var(--secondary);
+            font-weight: 500;
+            font-size: 0.9rem;
+        }
+
+        .budget-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 20px 0;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.05);
+            border-radius: 8px;
+            overflow: hidden;
+        }
+
+        .budget-table th {
+            background-color: var(--primary);
+            color: white;
+            text-align: left;
+            padding: 15px;
+        }
+
+        .budget-table td {
+            padding: 15px;
+            border-bottom: 1px solid rgba(0, 0, 0, 0.05);
+        }
+
+        .budget-table tr:nth-child(even) {
+            background-color: rgba(100, 65, 165, 0.03);
+        }
+
+        .budget-table tr:last-child td {
+            border-bottom: none;
+            font-weight: 700;
+            background-color: rgba(100, 65, 165, 0.08);
+        }
+
+        .highlight {
+            color: var(--secondary);
+            font-weight: 600;
+        }
+
+        .notes {
+            background-color: rgba(255, 107, 107, 0.05);
+            border-left: 4px solid var(--secondary);
+            padding: 20px;
+            margin: 30px 0;
+            border-radius: 0 8px 8px 0;
+        }
+
+        .notes h3 {
+            color: var(--secondary);
+            margin-bottom: 10px;
+        }
+
+        .footer {
+            background-color: var(--dark);
+            color: white;
+            padding: 30px 40px;
+            text-align: center;
+        }
+
+        .footer p {
+            margin-bottom: 10px;
+        }
+
+        .contact-info {
+            display: flex;
+            justify-content: center;
+            margin-top: 20px;
+            flex-wrap: wrap;
+        }
+
+        .contact-item {
+            margin: 0 15px;
+            display: flex;
+            align-items: center;
+        }
+
+        .contact-item i {
+            margin-right: 8px;
+            color: var(--secondary);
+        }
+
+        .feature-item {
+            display: flex;
+            align-items: center;
+            margin-bottom: 10px;
+        }
+
+        .feature-checkbox {
+            margin-right: 10px;
+        }
+
+        @media (max-width: 1024px) {
+            .container {
+                flex-direction: column;
+            }
+            
+            .editor-panel {
+                max-width: 100%;
+            }
+        }
+
+        @media (max-width: 768px) {
+            .quotation-details {
+                flex-direction: column;
+                gap: 15px;
+            }
+            
+            .detail-item {
+                text-align: left;
+            }
+            
+            .contact-info {
+                flex-direction: column;
+                align-items: center;
+                gap: 10px;
+            }
+            
+            .header h1 {
+                font-size: 2rem;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="editor-panel">
+            <h2 class="panel-title">Customize Quotation</h2>
+            
+            <div class="form-group">
+                <label for="clientName">Client Name</label>
+                <input type="text" id="clientName" class="form-control" placeholder="Enter client name">
+            </div>
+            
+            <div class="form-group">
+                <label for="clientLocation">Client Location</label>
+                <input type="text" id="clientLocation" class="form-control" placeholder="Enter client location">
+            </div>
+            
+            <div class="form-group">
+                <label for="projectTitle">Project Title</label>
+                <input type="text" id="projectTitle" class="form-control" placeholder="Enter project title">
+            </div>
+            
+            <div class="form-group">
+                <label for="projectDescription">Project Description</label>
+                <textarea id="projectDescription" class="form-control" rows="3" placeholder="Enter project description"></textarea>
+            </div>
+            
+            <div class="form-group">
+                <label>Project Features</label>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature1" class="feature-checkbox" checked>
+                    <label for="feature1">User registration and profile pages</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature2" class="feature-checkbox" checked>
+                    <label for="feature2">Portfolio uploads (designs, blogs, audio, video)</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature3" class="feature-checkbox" checked>
+                    <label for="feature3">Multi-user blog integration</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature4" class="feature-checkbox" checked>
+                    <label for="feature4">Social and hiring links per profile</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature5" class="feature-checkbox" checked>
+                    <label for="feature5">Admin dashboard for featuring profiles</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature6" class="feature-checkbox" checked>
+                    <label for="feature6">Dynamic pages for profiles, projects, and blog posts</label>
+                </div>
+                <div class="feature-item">
+                    <input type="checkbox" id="feature7" class="feature-checkbox" checked>
+                    <label for="feature7">Performance-based profile featuring</label>
+                </div>
+            </div>
+            
+            <div class="form-group">
+                <label for="timeline">Project Timeline (weeks)</label>
+                <input type="number" id="timeline" class="form-control" min="1" max="20" value="4">
+            </div>
+            
+            <div class="form-group">
+                <label for="budget">Total Budget (₹)</label>
+                <input type="number" id="budget" class="form-control" min="1000" step="500" value="25000">
+            </div>
+            
+            <div class="form-group">
+                <label for="yourName">Your Name</label>
+                <input type="text" id="yourName" class="form-control" value="Anupam Mondal">
+            </div>
+            
+            <div class="form-group">
+                <label for="yourEmail">Your Email</label>
+                <input type="email" id="yourEmail" class="form-control" value="contact@example.com">
+            </div>
+            
+            <div class="form-group">
+                <label for="yourPhone">Your Phone</label>
+                <input type="text" id="yourPhone" class="form-control" value="+91 XXXXX XXXXX">
+            </div>
+            
+            <button class="btn" id="updateQuotation">Update Quotation</button>
+            <button class="btn btn-secondary" id="printQuotation">
+                <i class="fas fa-print"></i> Print Quotation
+            </button>
+            <button class="btn btn-secondary" id="resetForm">Reset to Default</button>
+        </div>
+        
+        <div class="quotation-container" id="quotationPreview">
+            <div class="header">
+                <h1 id="previewProjectTitle">Project Quotation</h1>
+                <p id="previewProjectDescription">Creative Multi-User Platform on Wix</p>
+            </div>
+            
+            <div class="quotation-details">
+                <div class="detail-item">
+                    <h3>Client Name</h3>
+                    <p id="previewClientName">Client Name</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Client Location</h3>
+                    <p id="previewClientLocation">Kolkata, India</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Prepared by</h3>
+                    <p id="previewYourName">Anupam Mondal</p>
+                </div>
+                <div class="detail-item">
+                    <h3>Date</h3>
+                    <p id="previewDate">October 2025</p>
+                </div>
+            </div>
+            
+            <div class="content-section">
+                <div class="section-title">
+                    <i class="fas fa-bullseye"></i>
+                    <span>Project Overview</span>
+                </div>
+                <p id="previewFullDescription">A multi-user creative showcase and hiring platform with the following core features:</p>
+                <ul class="overview-list" id="previewFeatures">
+                    <li>User registration and profile pages</li>
+                    <li>Portfolio uploads (designs, blogs, audio, video)</li>
+                    <li>Multi-user blog integration</li>
+                    <li>Social and hiring links per profile</li>
+                    <li>Admin dashboard for featuring profiles</li>
+                    <li>Dynamic pages for profiles, projects, and blog posts</li>
+                    <li>Performance-based profile featuring (manual or automated)</li>
+                </ul>
+                
+                <div class="section-title">
+                    <i class="fas fa-tasks"></i>
+                    <span>Development Flow & Milestones</span>
+                </div>
+                <div class="timeline">
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 1: Planning & Wireframing</div>
+                        <div class="timeline-duration">2–3 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 2: Wix Setup & CMS Collections</div>
+                        <div class="timeline-duration">2 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 3: Dynamic Pages & Routing</div>
+                        <div class="timeline-duration">3–4 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 4: Member Area & Permissions</div>
+                        <div class="timeline-duration">2 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 5: Admin Dashboard (Basic)</div>
+                        <div class="timeline-duration">3 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 6: Media & Portfolio Integration</div>
+                        <div class="timeline-duration">2 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 7: Styling & Branding</div>
+                        <div class="timeline-duration">2 days</div>
+                    </div>
+                    <div class="timeline-item">
+                        <div class="timeline-title">Phase 8: Testing & Launch</div>
+                        <div class="timeline-duration">2 days</div>
+                    </div>
+                </div>
+                <p><strong>Total Duration:</strong> <span id="previewTimeline">~18–20 working days (3.5–4 weeks)</span></p>
+                
+                <div class="section-title">
+                    <i class="fas fa-money-bill-wave"></i>
+                    <span>Budget Estimate</span>
+                </div>
+                <table class="budget-table">
+                    <thead>
+                        <tr>
+                            <th>Item</th>
+                            <th>Cost</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>Wix Premium Plan (Combo or Unlimited)</td>
+                            <td>₹3,000–₹5,000/year</td>
+                        </tr>
+                        <tr>
+                            <td>Domain & Hosting (via Wix)</td>
+                            <td>Included in Wix plan</td>
+                        </tr>
+                        <tr>
+                            <td>Design & Development (Freelance)</td>
+                            <td>₹15,000–₹20,000</td>
+                        </tr>
+                        <tr>
+                            <td>Optional Add-ons (SEO, branding, automation)</td>
+                            <td>₹3,000–₹5,000</td>
+                        </tr>
+                        <tr>
+                            <td><strong>Total Estimated Budget</strong></td>
+                            <td class="highlight" id="previewBudget">₹18,000–₹25,000</td>
+                        </tr>
+                    </tbody>
+                </table>
+                <p><em>This is a lean MVP budget. Advanced features like automated featuring, analytics, or mobile app integration can be quoted separately.</em></p>
+                
+                <div class="notes">
+                    <h3>Notes</h3>
+                    <ul class="overview-list">
+                        <li>Platform will be scalable for future enhancements</li>
+                        <li>Wix Velo will be used for custom logic (activity tracking, dynamic filtering)</li>
+                        <li>Client will have full admin access post-launch</li>
+                        <li>Training or walkthrough session included</li>
+                    </ul>
+                </div>
+            </div>
+            
+            <div class="footer">
+                <p>Thank you for considering this proposal. I look forward to the opportunity to work with you.</p>
+                <p>For any queries or to proceed with this project, please contact:</p>
+                <div class="contact-info">
+                    <div class="contact-item">
+                        <i class="fas fa-user"></i>
+                        <span id="previewContactName">Anupam Mondal</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-envelope"></i>
+                        <span id="previewContactEmail">contact@example.com</span>
+                    </div>
+                    <div class="contact-item">
+                        <i class="fas fa-phone"></i>
+                        <span id="previewContactPhone">+91 XXXXX XXXXX</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // Set current date
+            const now = new Date();
+            const months = ['January', 'February', 'March', 'April', 'May', 'June', 
+                           'July', 'August', 'September', 'October', 'November', 'December'];
+            document.getElementById('previewDate').textContent = `${months[now.getMonth()]} ${now.getFullYear()}`;
+            
+            // Update quotation function
+            document.getElementById('updateQuotation').addEventListener('click', function() {
+                updateQuotation();
+            });
+            
+            // Print quotation function
+            document.getElementById('printQuotation').addEventListener('click', function() {
+                window.print();
+            });
+            
+            // Reset form function
+            document.getElementById('resetForm').addEventListener('click', function() {
+                resetForm();
+            });
+            
+            // Auto-update on input change
+            const inputs = document.querySelectorAll('.form-control, .feature-checkbox');
+            inputs.forEach(input => {
+                input.addEventListener('input', updateQuotation);
+                input.addEventListener('change', updateQuotation);
+            });
+            
+            // Initialize with default values
+            updateQuotation();
+        });
+        
+        function updateQuotation() {
+            // Get form values
+            const clientName = document.getElementById('clientName').value || 'Client Name';
+            const clientLocation = document.getElementById('clientLocation').value || 'Kolkata, India';
+            const projectTitle = document.getElementById('projectTitle').value || 'Project Quotation';
+            const projectDescription = document.getElementById('projectDescription').value || 'Creative Multi-User Platform on Wix';
+            const timeline = document.getElementById('timeline').value;
+            const budget = document.getElementById('budget').value;
+            const yourName = document.getElementById('yourName').value || 'Anupam Mondal';
+            const yourEmail = document.getElementById('yourEmail').value || 'contact@example.com';
+            const yourPhone = document.getElementById('yourPhone').value || '+91 XXXXX XXXXX';
+            
+            // Update preview elements
+            document.getElementById('previewClientName').textContent = clientName;
+            document.getElementById('previewClientLocation').textContent = clientLocation;
+            document.getElementById('previewProjectTitle').textContent = projectTitle;
+            document.getElementById('previewProjectDescription').textContent = projectDescription;
+            document.getElementById('previewYourName').textContent = yourName;
+            document.getElementById('previewContactName').textContent = yourName;
+            document.getElementById('previewContactEmail').textContent = yourEmail;
+            document.getElementById('previewContactPhone').textContent = yourPhone;
+            
+            // Update project description
+            const fullDescription = document.getElementById('projectDescription').value || 
+                'A multi-user creative showcase and hiring platform with the following core features:';
+            document.getElementById('previewFullDescription').textContent = fullDescription;
+            
+            // Update features list based on checkboxes
+            const featuresList = document.getElementById('previewFeatures');
+            featuresList.innerHTML = '';
+            
+            const features = [
+                { id: 'feature1', text: 'User registration and profile pages' },
+                { id: 'feature2', text: 'Portfolio uploads (designs, blogs, audio, video)' },
+                { id: 'feature3', text: 'Multi-user blog integration' },
+                { id: 'feature4', text: 'Social and hiring links per profile' },
+                { id: 'feature5', text: 'Admin dashboard for featuring profiles' },
+                { id: 'feature6', text: 'Dynamic pages for profiles, projects, and blog posts' },
+                { id: 'feature7', text: 'Performance-based profile featuring (manual or automated)' }
+            ];
+            
+            features.forEach(feature => {
+                if (document.getElementById(feature.id).checked) {
+                    const li = document.createElement('li');
+                    li.textContent = feature.text;
+                    featuresList.appendChild(li);
+                }
+            });
+            
+            // Update timeline
+            const days = timeline * 5;
+            document.getElementById('previewTimeline').textContent = 
+                `~${days-2}–${days} working days (${timeline} weeks)`;
+            
+            // Update budget
+            const budgetMin = Math.round(budget * 0.7);
+            const budgetMax = Math.round(budget * 1.1);
+            document.getElementById('previewBudget').textContent = `₹${budgetMin.toLocaleString()}–₹${budgetMax.toLocaleString()}`;
+        }
+        
+        function resetForm() {
+            document.getElementById('clientName').value = '';
+            document.getElementById('clientLocation').value = '';
+            document.getElementById('projectTitle').value = '';
+            document.getElementById('projectDescription').value = '';
+            document.getElementById('timeline').value = 4;
+            document.getElementById('budget').value = 25000;
+            document.getElementById('yourName').value = 'Anupam Mondal';
+            document.getElementById('yourEmail').value = 'contact@example.com';
+            document.getElementById('yourPhone').value = '+91 XXXXX XXXXX';
+            
+            // Check all feature checkboxes
+            const checkboxes = document.querySelectorAll('.feature-checkbox');
+            checkboxes.forEach(checkbox => {
+                checkbox.checked = true;
+            });
+            
+            updateQuotation();
+        }
+    </script>
+</body>
+</html>
