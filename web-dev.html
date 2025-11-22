@@ -539,6 +539,12 @@
                 width: 100%;
             }
         }
+        @media print {
+            body { padding:0; background:#fff; }
+            .editor-panel { display:none !important; }
+            .container { display:block; margin:0; }
+            .quotation-container { box-shadow:none; width:100%; }
+        }
     </style>
 </head>
 <body>
@@ -619,6 +625,15 @@
             <div class="form-group">
                 <label for="yourPhone">Your Phone</label>
                 <input type="text" id="yourPhone" class="form-control" placeholder="Enter your phone" value="+91-9474-460-058">
+            </div>
+            <div class="form-group">
+                <label>Bank / Payment Details</label>
+                <input type="text" id="bankName" class="form-control" placeholder="Bank Name" value="HDFC Bank">
+                <input type="text" id="accountName" class="form-control" placeholder="Account Holder Name" value="Anupam Mondal">
+                <input type="text" id="accountNumber" class="form-control" placeholder="Account Number" value="12345678901234">
+                <input type="text" id="ifsc" class="form-control" placeholder="IFSC Code" value="HDFC0001234">
+                <input type="text" id="branch" class="form-control" placeholder="Branch" value="Kolkata, West Bengal">
+                <input type="text" id="upiId" class="form-control" placeholder="UPI ID" value="anupam@upi">
             </div>
             
             <button class="btn" id="updateQuotation">Update Quotation</button>
@@ -766,6 +781,18 @@
                             </ul>
                         </div>
                     </div>
+                </div>
+                <div class="section">
+                    <h2><i class="fas fa-university"></i> Payment Details</h2>
+                    <table id="previewBankDetails">
+                        <tr><th>Field</th><th>Details</th></tr>
+                        <tr><td>Bank Name</td><td id="previewBankName">HDFC Bank</td></tr>
+                        <tr><td>Account Name</td><td id="previewAccountName">Anupam Mondal</td></tr>
+                        <tr><td>Account Number</td><td id="previewAccountNumber">12345678901234</td></tr>
+                        <tr><td>IFSC Code</td><td id="previewIFSC">HDFC0001234</td></tr>
+                        <tr><td>Branch</td><td id="previewBranch">Kolkata, West Bengal</td></tr>
+                        <tr><td>UPI ID</td><td id="previewUPI">anupam@upi</td></tr>
+                    </table>
                 </div>
                 
                 <div class="payment-terms">
@@ -968,6 +995,12 @@
             const yourName = document.getElementById('yourName').value || 'Your Name';
             const yourAddress = document.getElementById('yourAddress').value || 'Your Address';
             const yourPhone = document.getElementById('yourPhone').value || 'Your Phone';
+            const bankName = document.getElementById('bankName').value || 'Bank Name';
+            const accountName = document.getElementById('accountName').value || 'Account Name';
+            const accountNumber = document.getElementById('accountNumber').value || 'Account Number';
+            const ifsc = document.getElementById('ifsc').value || 'IFSC Code';
+            const branch = document.getElementById('branch').value || 'Branch';
+            const upiId = document.getElementById('upiId').value || 'UPI ID';
             
             // Update preview elements
             document.getElementById('previewClientName').textContent = clientName;
@@ -982,6 +1015,12 @@
             document.getElementById('previewYourAddress').textContent = yourAddress;
             document.getElementById('previewYourPhone').textContent = yourPhone;
             document.getElementById('previewFooterName').textContent = yourName;
+            document.getElementById('previewBankName').textContent = bankName;
+            document.getElementById('previewAccountName').textContent = accountName;
+            document.getElementById('previewAccountNumber').textContent = accountNumber;
+            document.getElementById('previewIFSC').textContent = ifsc;
+            document.getElementById('previewBranch').textContent = branch;
+            document.getElementById('previewUPI').textContent = upiId;
             
             // Update budget table
             updateBudgetTable();
@@ -1061,6 +1100,12 @@
             document.getElementById('yourName').value = 'Anupam Mondal';
             document.getElementById('yourAddress').value = 'Pratapnagar, Metiari, West Bengal 743330';
             document.getElementById('yourPhone').value = '+91-9474-460-058';
+            document.getElementById('bankName').value = 'HDFC Bank';
+            document.getElementById('accountName').value = 'Anupam Mondal';
+            document.getElementById('accountNumber').value = '12345678901234';
+            document.getElementById('ifsc').value = 'HDFC0001234';
+            document.getElementById('branch').value = 'Kolkata, West Bengal';
+            document.getElementById('upiId').value = 'anupam@upi';
             
             // Reset budget items
             initializeBudgetItems();
